@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="/admin/header/style.css" rel="stylesheet">
+    <link href="/admin/home_page/style.css" rel="stylesheet">
+    <link href="/admin/users_page/style.css" rel="stylesheet">
+    <link href="/admin/profile_page/style.css" rel="stylesheet">
+    <link href="/admin/statistic_page/style.css" rel="stylesheet">
+    <link href="/admin/log_book_page/style.css" rel="stylesheet">
+
+    <link href="../static/admin/header/style.css" rel="stylesheet">
+    <link href="../static/admin/home_page/style.css" rel="stylesheet">
+    <link href="../static/admin/users_page/style.css" rel="stylesheet">
+    <link href="../static/admin/profile_page/style.css" rel="stylesheet">
+    <link href="../static/admin/statistic_page/style.css" rel="stylesheet">
+    <link href="../static/admin/log_book_page/style.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+          crossorigin="anonymous">
+    <link href= "https://use.fontawesome.com/releases/v6.4.2/css/all.css"
+          type="text/css"
+          rel="stylesheet">
+    <title>Добро пожаловать</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo_container">
+            <a class="navbar-brand" href="#" style="color: white;font-weight: 600;margin-left: 20px;">
+                <img src="/images/logo.png" alt="Bootstrap" width="50" height="50">
+                Мед центр
+            </a>
+        </div>
+            <ul>
+                <div class="person_avatar">
+                    <img th:src="@{/admin/{userId}/avatar(userId=${admin.id})}">
+                    <div>
+                        <h5>Никита Радин</h5>
+                        <span>Администратор</span>
+                    </div>
+                </div>
+                <li>
+                    <a th:href="@{/logout}">
+                        <i title="Выход" class="fa-solid fa-right-from-bracket"></i>
+                    </a>
+                </li>
+            </ul>
+    </nav>
+    <div class="header_content" id="header_content">
+        <div class="tool_bar" id="tool_bar">
+            <ul>
+                <li >
+                    <i class="fa-solid fa-house"></i>
+                    Главная
+                </li>
+                <li>
+                    <i class="fa-solid fa-user"></i>
+                    Профиль
+                </li>
+                <li>
+                    <i class="fa-solid fa-users"></i>
+                    Пользователи
+                </li>
+                <li>
+                    <i class="fa-solid fa-book"></i>
+                    Журнал записей
+                </li>
+                <li>
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    Ваша история посящений
+                </li>
+                <li>
+                    <i class="fa-solid fa-chart-line"></i>
+                    Статистика
+                </li>
+            </ul>
+        </div>
+        <div  class="home_block">
+            <div class="home_block_content">
+                <ul class="list_home_content">
+                    <li class="item_list">
+                        <h2>Ваши ближайшие записи</h2>
+                        <ul class="list_patient_records">
+                            <li>
+                                <div class="home_card">
+                                    <h5>Кардиолог</h5>
+                                    <div class="home_card_description">
+                                        <div class="card_home_time">
+                                            <i class="fa-solid fa-clock"></i>
+                                            10:10
+                                            <span>Сегодня</span>
+                                        </div>
+                                        <div class="person_records">
+                                            Врач
+                                            <div>
+                                                <img src="../static/images/avatar.jpg">
+                                                <span>Радин Никита Сергеевич</span>
+                                            </div>
+                                        </div>
+                                        <div class="person_records">
+                                            Пациент
+                                            <div>
+                                                <img src="../static/images/avatar.jpg">
+                                                <span>Радин Никита Сергеевич</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="home_card">
+                                    <h5>Кардиолог</h5>
+                                    <div class="home_card_description">
+                                        <div class="card_home_time">
+                                            <i class="fa-solid fa-clock"></i>
+                                            10:10
+                                            <span>Сегодня</span>
+                                        </div>
+                                        <div class="person_records">
+                                            Врач
+                                            <div>
+                                                <img src="../static/images/avatar.jpg">
+                                                <span>Радин Никита Сергеевич</span>
+                                            </div>
+                                        </div>
+                                        <div class="person_records">
+                                            Пациент
+                                            <div>
+                                                <img src="../static/images/avatar.jpg">
+                                                <span>Радин Никита Сергеевич</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="home_card">
+                                    <h5>Кардиолог</h5>
+                                    <div class="home_card_description">
+                                        <div class="card_home_time">
+                                            <i class="fa-solid fa-clock"></i>
+                                            10:10
+                                            <span>Сегодня</span>
+                                        </div>
+                                        <div class="person_records">
+                                            Врач
+                                            <div>
+                                                <img src="../static/images/avatar.jpg">
+                                                <span>Радин Никита Сергеевич</span>
+                                            </div>
+                                        </div>
+                                        <div class="person_records">
+                                            Пациент
+                                            <div>
+                                                <img src="../static/images/avatar.jpg">
+                                                <span>Радин Никита Сергеевич</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="home_card">
+                                    <h5>Кардиолог</h5>
+                                    <div class="home_card_description">
+                                        <div class="card_home_time">
+                                            <i class="fa-solid fa-clock"></i>
+                                            10:10
+                                            <span>Сегодня</span>
+                                        </div>
+                                        <div class="person_records">
+                                            Врач
+                                            <div>
+                                                <img src="../static/images/avatar.jpg">
+                                                <span>Радин Никита Сергеевич</span>
+                                            </div>
+                                        </div>
+                                        <div class="person_records">
+                                            Пациент
+                                            <div>
+                                                <img src="../static/images/avatar.jpg">
+                                                <span>Радин Никита Сергеевич</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="home_card">
+                                    <h5>Кардиолог</h5>
+                                    <div class="home_card_description">
+                                        <div class="card_home_time">
+                                            <i class="fa-solid fa-clock"></i>
+                                            10:10
+                                            <span>Сегодня</span>
+                                        </div>
+                                        <div class="person_records">
+                                            Врач
+                                            <div>
+                                                <img src="../static/images/avatar.jpg">
+                                                <span>Радин Никита Сергеевич</span>
+                                            </div>
+                                        </div>
+                                        <div class="person_records">
+                                            Пациент
+                                            <div>
+                                                <img src="../static/images/avatar.jpg">
+                                                <span>Радин Никита Сергеевич</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="home_card">
+                                    <h5>Кардиолог</h5>
+                                    <div class="home_card_description">
+                                        <div class="card_home_time">
+                                            <i class="fa-solid fa-clock"></i>
+                                            10:10
+                                            <span>Сегодня</span>
+                                        </div>
+                                        <div class="person_records">
+                                            Врач
+                                            <div>
+                                                <img src="../static/images/avatar.jpg">
+                                                <span>Радин Никита Сергеевич</span>
+                                            </div>
+                                        </div>
+                                        <div class="person_records">
+                                            Пациент
+                                            <div>
+                                                <img src="../static/images/avatar.jpg">
+                                                <span>Радин Никита Сергеевич</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="home_card">
+                                    <h5>Кардиолог</h5>
+                                    <div class="home_card_description">
+                                        <div class="card_home_time">
+                                            <i class="fa-solid fa-clock"></i>
+                                            10:10
+                                            <span>Сегодня</span>
+                                        </div>
+                                        <div class="person_records">
+                                            Врач
+                                            <div>
+                                                <img src="../static/images/avatar.jpg">
+                                                <span>Радин Никита Сергеевич</span>
+                                            </div>
+                                        </div>
+                                        <div class="person_records">
+                                            Пациент
+                                            <div>
+                                                <img src="../static/images/avatar.jpg">
+                                                <span>Радин Никита Сергеевич</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="home_card">
+                                    <h5>Кардиолог</h5>
+                                    <div class="home_card_description">
+                                        <div class="card_home_time">
+                                            <i class="fa-solid fa-clock"></i>
+                                            10:10
+                                            <span>Сегодня</span>
+                                        </div>
+                                        <div class="person_records">
+                                            Врач
+                                            <div>
+                                                <img src="../static/images/avatar.jpg">
+                                                <span>Радин Никита Сергеевич</span>
+                                            </div>
+                                        </div>
+                                        <div class="person_records">
+                                            Пациент
+                                            <div>
+                                                <img src="../static/images/avatar.jpg">
+                                                <span>Радин Никита Сергеевич</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="item_list">
+                        <h2>Записи пациентов на сегодня</h2>
+                        <ul class="list_patient_records">
+                            <li>
+                                <div class="home_card">
+                                    <h5>Кардиолог</h5>
+                                    <div class="home_card_description">
+                                        <div class="card_home_time">
+                                            <i class="fa-solid fa-clock"></i>
+                                            10:10
+                                            <span>Сегодня</span>
+                                        </div>
+                                        <div class="person_records">
+                                            Врач
+                                            <div>
+                                                <img src="../static/images/avatar.jpg">
+                                                <span>Радин Никита Сергеевич</span>
+                                            </div>
+                                        </div>
+                                        <div class="person_records">
+                                            Пациент
+                                            <div>
+                                                <img src="../static/images/avatar.jpg">
+                                                <span>Радин Никита Сергеевич</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="home_card">
+                                    <h5>Кардиолог</h5>
+                                    <div class="home_card_description">
+                                        <div class="card_home_time">
+                                            <i class="fa-solid fa-clock"></i>
+                                            10:10
+                                            <span>Сегодня</span>
+                                        </div>
+                                        <div class="person_records">
+                                            Врач
+                                            <div>
+                                                <img src="../static/images/avatar.jpg">
+                                                <span>Радин Никита Сергеевич</span>
+                                            </div>
+                                        </div>
+                                        <div class="person_records">
+                                            Пациент
+                                            <div>
+                                                <img src="../static/images/avatar.jpg">
+                                                <span>Радин Никита Сергеевич</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="home_card">
+                                    <h5>Кардиолог</h5>
+                                    <div class="home_card_description">
+                                        <div class="card_home_time">
+                                            <i class="fa-solid fa-clock"></i>
+                                            10:10
+                                            <span>Сегодня</span>
+                                        </div>
+                                        <div class="person_records">
+                                            Врач
+                                            <div>
+                                                <img src="../static/images/avatar.jpg">
+                                                <span>Радин Никита Сергеевич</span>
+                                            </div>
+                                        </div>
+                                        <div class="person_records">
+                                            Пациент
+                                            <div>
+                                                <img src="../static/images/avatar.jpg">
+                                                <span>Радин Никита Сергеевич</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="home_card">
+                                    <h5>Кардиолог</h5>
+                                    <div class="home_card_description">
+                                        <div class="card_home_time">
+                                            <i class="fa-solid fa-clock"></i>
+                                            10:10
+                                            <span>Сегодня</span>
+                                        </div>
+                                        <div class="person_records">
+                                            Врач
+                                            <div>
+                                                <img src="../static/images/avatar.jpg">
+                                                <span>Радин Никита Сергеевич</span>
+                                            </div>
+                                        </div>
+                                        <div class="person_records">
+                                            Пациент
+                                            <div>
+                                                <img src="../static/images/avatar.jpg">
+                                                <span>Радин Никита Сергеевич</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="home_card">
+                                    <h5>Кардиолог</h5>
+                                    <div class="home_card_description">
+                                        <div class="card_home_time">
+                                            <i class="fa-solid fa-clock"></i>
+                                            10:10
+                                            <span>Сегодня</span>
+                                        </div>
+                                        <div class="person_records">
+                                            Врач
+                                            <div>
+                                                <img src="../static/images/avatar.jpg">
+                                                <span>Радин Никита Сергеевич</span>
+                                            </div>
+                                        </div>
+                                        <div class="person_records">
+                                            Пациент
+                                            <div>
+                                                <img src="../static/images/avatar.jpg">
+                                                <span>Радин Никита Сергеевич</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="home_card">
+                                    <h5>Кардиолог</h5>
+                                    <div class="home_card_description">
+                                        <div class="card_home_time">
+                                            <i class="fa-solid fa-clock"></i>
+                                            10:10
+                                            <span>Сегодня</span>
+                                        </div>
+                                        <div class="person_records">
+                                            Врач
+                                            <div>
+                                                <img src="../static/images/avatar.jpg">
+                                                <span>Радин Никита Сергеевич</span>
+                                            </div>
+                                        </div>
+                                        <div class="person_records">
+                                            Пациент
+                                            <div>
+                                                <img src="../static/images/avatar.jpg">
+                                                <span>Радин Никита Сергеевич</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="home_card">
+                                    <h5>Кардиолог</h5>
+                                    <div class="home_card_description">
+                                        <div class="card_home_time">
+                                            <i class="fa-solid fa-clock"></i>
+                                            10:10
+                                            <span>Сегодня</span>
+                                        </div>
+                                        <div class="person_records">
+                                            Врач
+                                            <div>
+                                                <img src="../static/images/avatar.jpg">
+                                                <span>Радин Никита Сергеевич</span>
+                                            </div>
+                                        </div>
+                                        <div class="person_records">
+                                            Пациент
+                                            <div>
+                                                <img src="../static/images/avatar.jpg">
+                                                <span>Радин Никита Сергеевич</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="home_card">
+                                    <h5>Кардиолог</h5>
+                                    <div class="home_card_description">
+                                        <div class="card_home_time">
+                                            <i class="fa-solid fa-clock"></i>
+                                            10:10
+                                            <span>Сегодня</span>
+                                        </div>
+                                        <div class="person_records">
+                                            Врач
+                                            <div>
+                                                <img src="../static/images/avatar.jpg">
+                                                <span>Радин Никита Сергеевич</span>
+                                            </div>
+                                        </div>
+                                        <div class="person_records">
+                                            Пациент
+                                            <div>
+                                                <img src="../static/images/avatar.jpg">
+                                                <span>Радин Никита Сергеевич</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div  class="profile_block">
+            <h2>Ваш профиль</h2>
+            <form method="post" enctype="multipart/form-data" th:action="@{/admin/{userId}/update(userId=${admin.id})}">
+                <div class="content_profile">
+                    <i class="fa-solid fa-circle-check sec_alert" th:if="${successUpdatePers}"></i>
+                    <div class="avatar_profile">
+                        <img th:src="@{/admin/{userId}/avatar(userId=${admin.id})}">
+                        <input onchange="changePhoto(this)" name="image" id="profile_file_avatar" type="file">
+                        <label for="profile_file_avatar">Загрузить фото</label>
+                    </div>
+                    <div class="description_profile">
+                        <ul>
+                            <li>
+                                <div class="inp_block" th:classappend="${bindingResultUpdate != null and bindingResultUpdate.hasFieldErrors('name') ? 'error' : ''}">
+                                    <label>
+                                        Ваше имя
+                                    </label>
+                                    <i class="fa-regular fa-circle-xmark"></i>
+                                    <input name="name"  th:value="${dtoUpdate == null ? admin.name : dtoUpdate.name}" placeholder="Введите новое имя">
+                                    <small th:if="${bindingResultUpdate!=null && bindingResultUpdate.getFieldError('name')!=null}" th:text="${bindingResultUpdate.getFieldError('name').getDefaultMessage}"></small>
+                                </div>
+                                <div class="inp_block" th:classappend="${bindingResultUpdate != null and bindingResultUpdate.hasFieldErrors('sur_name') ? 'error' : ''}">
+                                    <label>
+                                        Ваше фамилия
+                                    </label>
+                                    <i class="fa-regular fa-circle-xmark"></i>
+                                    <input name="sur_name" th:value="${dtoUpdate == null ? admin.sur_name : dtoUpdate.sur_name}" placeholder="Введите новую фамилия">
+                                    <small th:if="${bindingResultUpdate!=null && bindingResultUpdate.getFieldError('sur_name')!=null}" th:text="${bindingResultUpdate.getFieldError('sur_name').getDefaultMessage}"></small>
+                                </div>
+                                <div class="inp_block" th:classappend="${bindingResultUpdate != null and bindingResultUpdate.hasFieldErrors('patronymic') ? 'error' : ''}">
+                                    <label>
+                                        Ваше отчество
+                                    </label>
+                                    <i class="fa-regular fa-circle-xmark"></i>
+                                    <input name="patronymic" th:value="${dtoUpdate == null ? admin.patronymic : dtoUpdate.patronymic}" placeholder="Введите новое отчество">
+                                    <small th:if="${bindingResultUpdate!=null && bindingResultUpdate.getFieldError('patronymic')!=null}" th:text="${bindingResultUpdate.getFieldError('patronymic').getDefaultMessage}"></small>
+                                </div>
+                                <div class="inp_block" th:classappend="${bindingResultUpdate != null and bindingResultUpdate.hasFieldErrors('phone') ? 'error' : ''}">
+                                    <label>
+                                        Ваш номер телефона
+                                    </label>
+                                    <i class="fa-regular fa-circle-xmark"></i>
+                                    <input name="phone" th:value="${dtoUpdate == null ? admin.phone : dtoUpdate.phone}" placeholder="Введите новый номер телефона">
+                                    <small th:if="${bindingResultUpdate!=null && bindingResultUpdate.getFieldError('phone')!=null}" th:text="${bindingResultUpdate.getFieldError('phone').getDefaultMessage}"></small>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <label>
+                                        Ваш Email
+                                    </label>
+                                    <input name="email" th:value="${admin.email}" placeholder="Введите новый email">
+                                </div>
+                                <div class="inp_block" th:classappend="${bindingResultUpdate != null and bindingResultUpdate.hasFieldErrors('password') ? 'error' : ''}">
+                                    <label>
+                                        Ваш пароль
+                                    </label>
+                                    <i class="fa-regular fa-circle-xmark"></i>
+                                    <input  th:value="${dtoUpdate == null ? admin.password : dtoUpdate.password}" name="password" placeholder="Введите новый пароль">
+                                    <small th:if="${bindingResultUpdate!=null && bindingResultUpdate.getFieldError('password')!=null}" th:text="${bindingResultUpdate.getFieldError('password').getDefaultMessage}"></small>
+                                </div>
+                                <div>
+                                    <label>
+                                        Дата вашкй регистрации
+                                    </label>
+                                    <input class="read_only" readonly th:value="${admin.date_ragistration.toLocalDate()
+                                +' '
+                                +admin.date_ragistration.getHour()
+                                +':'
+                                +admin.date_ragistration.getMinute()}" placeholder="Введите новое имя">
+                                </div>
+                                <div>
+                                    <label>
+                                        Статус
+                                    </label>
+                                    <input class="read_only" readonly th:value="'Активен'" placeholder="Введите новое имя">
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Сохранить</button>
+                </div>
+            </form>
+        </div>
+        <div  class="users_block" id="users_block">
+            <div class="tool_users_type">
+                <div class="tool_users_type_button" id="tool_users_type_button">
+                    <button>Пациенты</button>
+                    <button>Врачи</button>
+                    <button>Администраторы</button>
+                </div>
+                <div class="tool_users_type_statistic">
+                    <h5>Количество пользователей : <span th:text="${all_users}"></span></h5>
+                    <h5>Онлайн сейчас : <span>5</span></h5>
+                </div>
+            </div>
+            <div class="patient_type_block">
+                <div class="tool_action_users">
+                    <h2>Пациенты</h2>
+                        <button style="background-color: #6a5ac3; color: white">Добавить пациента</button>
+                        <button>Импортировать пациента XML</button>
+                    <button class="filter_patient" id="filter_patient"><i class="fa-solid fa-chevron-left"></i> Фильтр</button>
+                    <div id="filterContainer" class="filterContainer">
+                        <input type="text" placeholder="Параметр 1">
+                        <input type="text" placeholder="Параметр 2">
+                        <input type="text" placeholder="Параметр 3">
+                    </div>
+                </div>
+                <div class="table_patient" style="height: 100%;overflow-y: auto;width: 100%">
+                    <table>
+                        <tr>
+                            <th>Фото</th>
+                            <th>ФИО</th>
+                            <th>Номер телефона</th>
+                            <th>Email</th>
+                            <th>Статус</th>
+                            <th>Статистика</th>
+                            <th>Операции</th>
+                        </tr>
+                        <tr th:each="patients:${listPatient}">
+                            <td><img th:src="@{/admin/{userId}/avatar(userId=${patients.id})}"></td>
+                            <td th:text="${patients.name+' '+patients.sur_name+' '+patients.patronymic}">Петров Петрович Петр</td>
+                            <td th:text="${patients.phone}">+375293421122</td>
+                            <td th:text="${patients.email}">eungfb@mailto.plus</td>
+                            <td th:text="${patients.statusUser== T(com.example.hospital.model.StatusUser).ACTIVE_STATUS ? 'Активен' : 'Заблокирован'}"
+                                th:class="${patients.statusUser== T(com.example.hospital.model.StatusUser).ACTIVE_STATUS ? 'active_status':'block_status'}">
+                                <span class="active_status">Активен</span>
+                            </td>
+                            <td>
+                                <div class="table_but_tool">
+                                    <i class="fa-regular fa-pen-to-square"></i>
+                                    <i class="fa-solid fa-chart-simple"></i>
+                                    <a onclick="showConfirmationModal(this)"  th:data-id="${patients.id}">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </a>
+                                </div>
+                            </td>
+                            <td>
+                                <a th:href="@{/admin/{adminId}/block:{idUser}(idUser=${patients.id},adminId=${admin.id})}" th:if="${patients.statusUser== T(com.example.hospital.model.StatusUser).ACTIVE_STATUS}" class="btn btn-outline-danger">Заблокировать</a>
+                                <a th:href="@{/admin/{adminId}/unblock:{idUser}(idUser=${patients.id},adminId=${admin.id})}" th:if="${patients.statusUser== T(com.example.hospital.model.StatusUser).BLOCK_STATUS}" class="btn btn-outline-success">Разблокировать</a>
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+            <div class="doctor_type_block">
+                <div class="tool_action_users">
+                    <h2>Врачи</h2>
+                    <button style="background-color: #6a5ac3; color: white" data-bs-target="#addDoctorModal" data-bs-toggle="modal">Добавить врача</button>
+                    <div style="width: 50%;display: flex;align-items:center">
+                        <input  placeholder="Поиск">
+                    </div>
+                    <select>
+                        <option>Выберите тип врача</option>
+                        <option>Уролог</option>
+                        <option>Выберите тип врача</option>
+                    </select>
+                </div>
+                <ul>
+                    <li>
+                        <div class="card" style="width: 18rem;">
+                            <img src="../static/images/doctor.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">An item</li>
+                                <li class="list-group-item">A second item</li>
+                                <li class="list-group-item">A third item</li>
+                            </ul>
+                            <div class="card-body">
+                                <a href="#" class="card-link">Card link</a>
+                                <a href="#" class="card-link">Another link</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="card" style="width: 18rem;">
+                            <img src="../static/images/doctor.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">An item</li>
+                                <li class="list-group-item">A second item</li>
+                                <li class="list-group-item">A third item</li>
+                            </ul>
+                            <div class="card-body">
+                                <a href="#" class="card-link">Card link</a>
+                                <a href="#" class="card-link">Another link</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="card" style="width: 18rem;">
+                            <img src="../static/images/doctor.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">An item</li>
+                                <li class="list-group-item">A second item</li>
+                                <li class="list-group-item">A third item</li>
+                            </ul>
+                            <div class="card-body">
+                                <a href="#" class="card-link">Card link</a>
+                                <a href="#" class="card-link">Another link</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="card" style="width: 18rem;">
+                            <img src="../static/images/doctor.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">An item</li>
+                                <li class="list-group-item">A second item</li>
+                                <li class="list-group-item">A third item</li>
+                            </ul>
+                            <div class="card-body">
+                                <a href="#" class="card-link">Card link</a>
+                                <a href="#" class="card-link">Another link</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="card" style="width: 18rem;">
+                            <img src="../static/images/doctor.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">An item</li>
+                                <li class="list-group-item">A second item</li>
+                                <li class="list-group-item">A third item</li>
+                            </ul>
+                            <div class="card-body">
+                                <a href="#" class="card-link">Card link</a>
+                                <a href="#" class="card-link">Another link</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="patient_type_block">
+                <div class="tool_action_users">
+                    <h2>Администраторы</h2>
+                    <button style="background-color: #6a5ac3; color: white">Добавить админа</button>
+                    <button>Импортировать админов XML</button>
+                    <button class="filter_patient"><i class="fa-solid fa-chevron-left"></i> Фильтр</button>
+                </div>
+                <div  class="table_patient" style="height: 100%;overflow-y: auto;width: 100%">
+                    <table >
+                        <tr>
+                            <th>Фото</th>
+                            <th>ФИО</th>
+                            <th>Номер телефона</th>
+                            <th>Email</th>
+                            <th>Статистика</th>
+                            <th>Операции</th>
+                        </tr>
+                        <tr th:each="admins:${listAdmin}">
+                            <td><img th:src="@{/admin/{userId}/avatar(userId=${admins.id})}"></td>
+                            <td th:text="${admins.name+' '+admins.sur_name+' '+admins.patronymic}">Петров Петрович Петр</td>
+                            <td th:text="${admins.phone}">+375293421122</td>
+                            <td th:text="${admins.email}">eungfb@mailto.plus</td>
+                            <td>
+                                <div class="table_but_tool">
+                                    <i class="fa-regular fa-pen-to-square"></i>
+                                    <i class="fa-solid fa-chart-simple"></i>
+                                    <i class="fa-solid fa-trash"></i>
+                                </div>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-outline-success">Разблокировать</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div  class="history_records_block">
+            <h2>Журнал записей</h2>
+            <div class="table_log_book">
+                <table>
+                    <thead>
+                        <th>№</th>
+                        <th>Специлизация</th>
+                        <th>Врач</th>
+                        <th>Время записи</th>
+                        <th>Пациент</th>
+                        <th>Действие</th>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            Кардиолог
+                        </td>
+                        <td class="user_description">
+                            <img src="../static/images/avatar.jpg">
+                            Петр Петров Петрович
+                        </td>
+                        <td>
+                            10:10  14.12.2000
+                        </td>
+                        <td class="user_description">
+                            <img src="../static/images/avatar.jpg">
+                            Радин Никита Сергеевич
+                        </td>
+                        <td>
+                            <button>Подробнее</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            Кардиолог
+                        </td>
+                        <td class="user_description">
+                            <img src="../static/images/avatar.jpg">
+                            Петр Петров Петрович
+                        </td>
+                        <td>
+                            10:10  14.12.2000
+                        </td>
+                        <td class="user_description">
+                            <img src="../static/images/avatar.jpg">
+                            Радин Никита Сергеевич
+                        </td>
+                        <td>
+                            <button>Подробнее</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            Кардиолог
+                        </td>
+                        <td class="user_description">
+                            <img src="../static/images/avatar.jpg">
+                            Петр Петров Петрович
+                        </td>
+                        <td>
+                            10:10  14.12.2000
+                        </td>
+                        <td class="user_description">
+                            <img src="../static/images/avatar.jpg">
+                            Радин Никита Сергеевич
+                        </td>
+                        <td>
+                            <button>Подробнее</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            Кардиолог
+                        </td>
+                        <td class="user_description">
+                            <img src="../static/images/avatar.jpg">
+                            Петр Петров Петрович
+                        </td>
+                        <td>
+                            10:10  14.12.2000
+                        </td>
+                        <td class="user_description">
+                            <img src="../static/images/avatar.jpg">
+                            Радин Никита Сергеевич
+                        </td>
+                        <td>
+                            <button>Подробнее</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            Кардиолог
+                        </td>
+                        <td class="user_description">
+                            <img src="../static/images/avatar.jpg">
+                            Петр Петров Петрович
+                        </td>
+                        <td>
+                            10:10  14.12.2000
+                        </td>
+                        <td class="user_description">
+                            <img src="../static/images/avatar.jpg">
+                            Радин Никита Сергеевич
+                        </td>
+                        <td>
+                            <button>Подробнее</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            Кардиолог
+                        </td>
+                        <td class="user_description">
+                            <img src="../static/images/avatar.jpg">
+                            Петр Петров Петрович
+                        </td>
+                        <td>
+                            10:10  14.12.2000
+                        </td>
+                        <td class="user_description">
+                            <img src="../static/images/avatar.jpg">
+                            Радин Никита Сергеевич
+                        </td>
+                        <td>
+                            <button>Подробнее</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            Кардиолог
+                        </td>
+                        <td class="user_description">
+                            <img src="../static/images/avatar.jpg">
+                            Петр Петров Петрович
+                        </td>
+                        <td>
+                            10:10  14.12.2000
+                        </td>
+                        <td class="user_description">
+                            <img src="../static/images/avatar.jpg">
+                            Радин Никита Сергеевич
+                        </td>
+                        <td>
+                            <button>Подробнее</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            Кардиолог
+                        </td>
+                        <td class="user_description">
+                            <img src="../static/images/avatar.jpg">
+                            Петр Петров Петрович
+                        </td>
+                        <td>
+                            10:10  14.12.2000
+                        </td>
+                        <td class="user_description">
+                            <img src="../static/images/avatar.jpg">
+                            Радин Никита Сергеевич
+                        </td>
+                        <td>
+                            <button>Подробнее</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            Кардиолог
+                        </td>
+                        <td class="user_description">
+                            <img src="../static/images/avatar.jpg">
+                            Петр Петров Петрович
+                        </td>
+                        <td>
+                            10:10  14.12.2000
+                        </td>
+                        <td class="user_description">
+                            <img src="../static/images/avatar.jpg">
+                            Радин Никита Сергеевич
+                        </td>
+                        <td>
+                            <button>Подробнее</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            Кардиолог
+                        </td>
+                        <td class="user_description">
+                            <img src="../static/images/avatar.jpg">
+                            Петр Петров Петрович
+                        </td>
+                        <td>
+                            10:10  14.12.2000
+                        </td>
+                        <td class="user_description">
+                            <img src="../static/images/avatar.jpg">
+                            Радин Никита Сергеевич
+                        </td>
+                        <td>
+                            <button>Подробнее</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            Кардиолог
+                        </td>
+                        <td class="user_description">
+                            <img src="../static/images/avatar.jpg">
+                            Петр Петров Петрович
+                        </td>
+                        <td>
+                            10:10  14.12.2000
+                        </td>
+                        <td class="user_description">
+                            <img src="../static/images/avatar.jpg">
+                            Радин Никита Сергеевич
+                        </td>
+                        <td>
+                            <button>Подробнее</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            Кардиолог
+                        </td>
+                        <td class="user_description">
+                            <img src="../static/images/avatar.jpg">
+                            Петр Петров Петрович
+                        </td>
+                        <td>
+                            10:10  14.12.2000
+                        </td>
+                        <td class="user_description">
+                            <img src="../static/images/avatar.jpg">
+                            Радин Никита Сергеевич
+                        </td>
+                        <td>
+                            <button>Подробнее</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            Кардиолог
+                        </td>
+                        <td class="user_description">
+                            <img src="../static/images/avatar.jpg">
+                            Петр Петров Петрович
+                        </td>
+                        <td>
+                            10:10  14.12.2000
+                        </td>
+                        <td class="user_description">
+                            <img src="../static/images/avatar.jpg">
+                            Радин Никита Сергеевич
+                        </td>
+                        <td>
+                            <button>Подробнее</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            Кардиолог
+                        </td>
+                        <td class="user_description">
+                            <img src="../static/images/avatar.jpg">
+                            Петр Петров Петрович
+                        </td>
+                        <td>
+                            10:10  14.12.2000
+                        </td>
+                        <td class="user_description">
+                            <img src="../static/images/avatar.jpg">
+                            Радин Никита Сергеевич
+                        </td>
+                        <td>
+                            <button>Подробнее</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div  class="statistic_block">
+            <div class="statistic_container">
+                <div class="statistic_block_page">
+                    <div class="today_workload">
+                        <div class="container_progress">
+                            <div class="progress_cust" style="--i:85;--clr:#43f94a;">
+                                <h3>85<span>%</span></h3>
+                                <h4>html</h4>
+                            </div>
+                        </div>
+                        <div class="container_progress">
+                            <div class="progress_cust less" style="--i:35;--clr:#2ccde9;">
+                                <h3>35<span>%</span></h3>
+                                <h4>html</h4>
+                            </div>
+                        </div>
+                        <div class="container_progress">
+                            <div class="progress_cust" style="--i:65;--clr:#fb297b">
+                                <h3>65<span>%</span></h3>
+                                <h4>html</h4>
+                            </div>
+                        </div>
+                        <div class="container_progress">
+                            <div class="progress_cust" style="--i:55;--clr:#ffe047">
+                                <h3>55<span>%</span></h3>
+                                <h4>html</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div  class="chart_workloadChart statistic_block_page">
+                    <canvas id="myChart" height="300%"></canvas>
+                </div>
+                <div class="statistic_block_page">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="addDoctorModal"  aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Регистрация врачей</h1>
+                    <button type="button" class="btn-close"  aria-label="Close" onclick="closeModal('addDoctorModal')"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="form_registration" th:method="post">
+                        <div class="registration_content">
+                            <i class="fa-solid fa-circle-check sec_alert" ></i>
+                            <div class="avatar_profile" style="align-items: center">
+                                <img>
+                                <input  type="file">
+                                <label for="profile_file_avatar">Загрузить фото</label>
+                            </div>
+                            <div class="inp_block">
+                                <label >Введите имя</label>
+                                <i class="fa-regular fa-circle-xmark"></i>
+                                <input  name="name">
+                                <small ></small>
+                            </div>
+                            <div class="inp_block">
+                                <label >Введите фамилию</label>
+                                <i class="fa-regular fa-circle-xmark"></i>
+                                <input  name="name">
+                                <small ></small>
+                            </div>
+                            <div class="inp_block">
+                                <label >Введите отчество</label>
+                                <i class="fa-regular fa-circle-xmark"></i>
+                                <input  name="name">
+                                <small ></small>
+                            </div>
+                            <div class="inp_block">
+                                <label >Введите номер телефона</label>
+                                <i class="fa-regular fa-circle-xmark"></i>
+                                <input  name="name">
+                                <small ></small>
+                            </div>
+                            <div class="inp_block">
+                                <label >Введите email</label>
+                                <i class="fa-regular fa-circle-xmark"></i>
+                                <input  name="name">
+                                <small ></small>
+                            </div>
+                            <div class="inp_block">
+                                <label >Выберите специальность </label>
+                                <select>
+                                    <option>
+                                        Терапевт
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="inp_block">
+                                <label >Введите email</label>
+                                <i class="fa-regular fa-circle-xmark"></i>
+                                <input type="number" max="100" min="1"  name="name">
+                                <small ></small>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button style="width: 100%" type="submit" class="btn btn-primary">Зарегестрироваться</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="deleteUserModalLabel"  aria-hidden="true" aria-labelledby="exampledeleteUserModalLabel" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampledeleteUserModalLabel">Процесс удаления</h1>
+                    <button type="button" class="btn-close"  aria-label="Close" onclick="closeModal('deleteUserModalLabel')"></button>
+                </div>
+                <div class="modal-body">
+                    Вы действительно хотите удалить пользователя ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button"  class="btn btn-danger">Да</button>
+                    <button class="btn btn-primary" onclick="closeModal('deleteUserModalLabel')" >Нет</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/admin/users_page/script.js" defer></script>
+    <script src="/admin/header/script.js" defer></script>
+    <script src="/admin/profile_page/script.js" defer></script>
+    <script src="../static/admin/header/script.js" defer></script>
+    <script src="../static/admin/users_page/script.js" defer></script>
+</html>
