@@ -23,8 +23,8 @@ import static java.util.function.Predicate.not;
 @Service
 public class UserService implements CrudOperation<User,UserChangeDto> , UserDetailsService {
 
-    UserRepository userRepository;
-    ImageServiece imageService;
+    private UserRepository userRepository;
+    private ImageServiece imageService;
 
     @Autowired
     UserService(UserRepository userRepository, ImageServiece imageServiece){
@@ -77,6 +77,14 @@ public class UserService implements CrudOperation<User,UserChangeDto> , UserDeta
                 .orElse(false);
     }
 
+    public double calculateRolePercentage(Role role){
+       return userRepository.calculateRolePercentage(role);
+    }
+
+    public double calculateStatusPercentage(StatusUser statusUser){
+        return userRepository.calculateStatusPercentage(statusUser);
+    }
+
     public Optional<User> blockUser(Long id){
        return userRepository.findById(id)
                 .map(user -> {
@@ -84,6 +92,7 @@ public class UserService implements CrudOperation<User,UserChangeDto> , UserDeta
                     return user;
                 })
                 .map(userRepository::save);
+
     }
 
     public Optional<User> unlockUser(Long id){
@@ -115,4 +124,5 @@ public class UserService implements CrudOperation<User,UserChangeDto> , UserDeta
                 ))
                 .orElseThrow(()-> new UsernameNotFoundException("Аккаунт не был найден"));
     }
+
 }

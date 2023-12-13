@@ -33,12 +33,12 @@ public class UserChangeDto {
     String patronymic;
 
     @NotNull(message = "Заполните поле !")
-    @Pattern(regexp = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$",message = "Неверный формат почты")
+    @Pattern(regexp = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$", message = "Неверный формат почты")
     String email;
 
     @NotNull(message = "Заполните поле !")
-    @Size(min = 11,max = 12,message = "Неверный формат телефона !")
-    @Pattern(regexp = "(\\+375|80)\\d{9}",message = "Неверный формат телефона !")
+    @Size(min = 11, max = 12, message = "Неверный формат телефона !")
+    @Pattern(regexp = "(\\+375|80)\\d{9}", message = "Неверный формат телефона !")
     String phone;
 
     @NotEmpty(message = "Заполните поле пароля !")

@@ -1,10 +1,13 @@
 package com.example.hospital.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Data
 @Getter
@@ -17,17 +20,33 @@ public class MedicalCard {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
+    @Column(length = 5000)
     @NotNull
+    @Size(max = 5000, message = "Слишком длинное описание !")
+    @NotBlank(message = "Поле не должно быть пустым !")
     String diagnosis;
-    @NotNull
+
     String date_visitation;
+
+    @Column(length = 5000)
     @NotNull
+    @Size(max = 5000, message = "Слишком длинное описание !")
+    @NotBlank(message = "Поле не должно быть пустым !")
     String description;
+
+    @Column(length = 5000)
     @NotNull
+    @Size(max = 5000, message = "Слишком длинное описание !")
+    @NotBlank(message = "Поле не должно быть пустым !")
     String appointments;
 
-    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    @JoinColumn(name = "medical_id")
-    Patient patient;
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
+    User patient;
+
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, optional = false,fetch = FetchType.LAZY)
+    @JoinColumn(name = "doctor_id",nullable = true)
+    Doctor doctor;
 
 }

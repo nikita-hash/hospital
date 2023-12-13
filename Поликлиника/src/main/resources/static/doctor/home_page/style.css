@@ -1,0 +1,129 @@
+.home_block{
+    width: 100%;
+    height: 100%;
+    padding: 2%;
+    overflow-y: auto;
+}
+
+.home_block h2{
+    color: #51438f;
+}
+
+.rec_but{
+    gap: 20px;
+    display: flex;
+}
+
+.rec_but button{
+    white-space: nowrap;
+    width: 100%;
+}
+
+.rec_but a{
+    white-space: nowrap;
+    width: 100%;
+}
+
+.list_patient_records{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    list-style: none;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 0;
+    margin: 0;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.list_patient_records li{
+    width: 24.50%;
+}
+
+
+.home_block_content .list_home_content{
+    list-style: none;
+    margin-top: 0;
+    padding: 0;
+    display: flex;
+    flex-flow: column;
+    gap: 20px;
+}
+
+.home_card{
+    border: 1px solid #4b5c79;
+    max-width: 100%;
+    background-color: white;
+    box-shadow: 0 0 5px 5px rgba(145, 127, 222, 0.3);
+    border-radius: 10px;
+    display: flex;
+    flex-flow: column;
+    gap: 10px;
+}
+
+.home_card h5{
+    padding: 20px;
+    border-bottom: 1px solid #4b5c79;
+}
+
+.card_home_time{
+     color: #4b5c79;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 700;
+    gap: 10px;
+    position: relative;
+}
+
+.person_records{
+    display: flex;
+    gap: 15px;
+    font-size: 15px;
+    color: #4b5c79;
+    font-weight: 700;
+    width: 100%;
+    align-items: center;
+}
+
+.person_records div{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.person_records span{
+    color: #51438f;
+    text-align: center;
+    width: 100%;
+}
+
+
+.card_home_time i{
+    font-size: 20px;
+}
+
+.home_card_description{
+    padding: 20px;
+    display: flex;
+    flex-flow: column;
+    gap: 7px;
+    padding-top: 0px;
+}
+
+.home_card_description img{
+    width: 4vh;
+    height: 40px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.home_block_content .list_home_content .item_list{
+    border-bottom: 1px solid #4b5c79;
+    padding: 30px;
+}
+
+
+

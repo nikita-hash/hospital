@@ -10,6 +10,7 @@ import java.util.Base64;
 @Service
 @Scope("prototype")
 public class PasswordGenerator {
+
     private final SecureRandom secureRandom;
     private final PasswordEncoder passwordEncoder;
 

@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.Cascade;
 import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import java.util.List;
@@ -36,4 +37,11 @@ public class Doctor extends User{
 
     @ElementCollection
     List<Boolean> schedule;
+
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "doctor")
+    List<Record>records;
+
+    @OneToMany(mappedBy = "doctor",cascade = {CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval = false)
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    private List<MedicalCard> medicalCards;
 }

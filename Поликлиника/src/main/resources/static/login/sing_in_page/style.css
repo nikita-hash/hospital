@@ -11,11 +11,19 @@
     color: white;
 }
 
-.sing_in_block .sing_in_block_content{
+.sing_in_block .sing_in_block_content {
     width: 20%;
     padding: 30px;
     border-radius: 10px;
     background-color: rgba(51, 51, 51, 0.8);
+    display: flex;
+    flex-flow: column;
+    justify-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.sing_in_block_content form{
     display: flex;
     flex-flow: column;
     justify-items: center;

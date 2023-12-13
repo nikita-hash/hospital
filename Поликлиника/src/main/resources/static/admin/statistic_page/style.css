@@ -45,8 +45,16 @@
     justify-items: center;
     align-items: center;
     flex-wrap: wrap;
-    gap: 40px;
+    gap: 20px;
 }
+
+.container_progress h4{
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+    background-color: var(--clr);
+}
+
 
 .container_progress .progress_cust{
     position: relative;
@@ -66,6 +74,13 @@
     z-index: 1;
     font-weight: 600;
     color: white;
+    display: flex;
+    gap: 5px;
+    align-items: flex-end;
+}
+
+.container_progress .progress_cust h3 div{
+    font-size: 29px;
 }
 
 .container_progress .progress_cust h3 span{
@@ -109,7 +124,7 @@
 }
 
 
-.container_progress .progress_cust .less::before{
-    background:var(--clr) ;
+.container_progress .progress_cust.less::before{
+    background:#444 ;
     transform: rotate(calc(((var(--i) - 0) * 0.01turn)));
 }

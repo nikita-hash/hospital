@@ -1,0 +1,1 @@
+INSERT INTO user_table (email, password, role, status_user, name, sur_name, patronymic, phone, date_birth, image) VALUES ('example@example.com', 'password123', 'ADMIN', 'ACTIVE_STATUS', 'John', 'Doe', 'Smith', '+375291234567', '1980-01-01', 'avatar.jpg');

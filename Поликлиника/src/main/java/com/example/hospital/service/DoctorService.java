@@ -44,6 +44,10 @@ public class DoctorService {
         return doctorRepository.findAll();
     }
 
+    public List<Doctor>findAllByStatusUser(StatusUser statusUser){
+        return doctorRepository.findAllByStatusUser(statusUser);
+    }
+
 
     @SneakyThrows
     @Transactional
@@ -62,4 +66,7 @@ public class DoctorService {
         doctorRepository.save(doctor);
     }
 
+    public Optional<Doctor> findById(Long id) {
+        return doctorRepository.findById(id);
+    }
 }

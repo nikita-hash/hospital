@@ -1,30 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+
+    <link href="/doctor/header/style.css" rel="stylesheet">
+    <link href="/doctor/profile_page/style.css" rel="stylesheet">
+    <link href="/doctor/home_page/style.css" rel="stylesheet">
+    <link href="/doctor/log_book_page/style.css" rel="stylesheet">
+    <link href="/doctor/users_page/style.css" rel="stylesheet">
+    <link href="/doctor/med_card_page/style.css" rel="stylesheet">
+
+    <link href="../static/doctor/header/style.css" rel="stylesheet">
+    <link href="../static/doctor/profile_page/style.css" rel="stylesheet">
+    <link href="../static/doctor/home_page/style.css" rel="stylesheet">
+    <link href="../static/doctor/log_book_page/style.css" rel="stylesheet">
+    <link href="../static/doctor/users_page/style.css" rel="stylesheet">
+    <link href="../static/doctor/med_card_page/style.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+          crossorigin="anonymous">
+    <link href= "https://use.fontawesome.com/releases/v6.4.2/css/all.css"
+          type="text/css"
+          rel="stylesheet">
     <title>Title</title>
 </head>
 <body>
     <nav class="navbar">
-        <div class="logo_container">
-            <a class="navbar-brand" href="#" style="color: white;font-weight: 600;margin-left: ">
-                <img src="../static/images/logo.png" alt="Bootstrap" width="50" height="50">
-                Мед центр
-            </a>
-        </div>
-        <ul>
-            <div class="person_avatar">
-                <img src="../static/images/avatar.jpg">
-                <div>
-                    <h5>Никита Радин</h5>
-                    <span>Врач</span>
-                </div>
+    <div class="logo_container">
+        <a class="navbar-brand" href="#" style="color: white;font-weight: 600;margin-left: 20px;">
+            <img src="/images/logo.png" alt="Bootstrap" width="50" height="50">
+            Мед центр
+        </a>
+    </div>
+    <ul>
+        <div class="person_avatar">
+            <img th:src="@{/doctor/{userId}/avatar(userId=${doctor.id})}">
+            <div>
+                <h5 th:text="${doctor.name}+' '+${doctor.sur_name}">Никита Радин</h5>
+                <span>Доктор</span>
             </div>
-            <li>
+        </div>
+        <li>
+            <a th:href="@{/logout}">
                 <i title="Выход" class="fa-solid fa-right-from-bracket"></i>
-            </li>
-        </ul>
-    </nav>
+            </a>
+        </li>
+    </ul>
+</nav>
     <div class="header_content" id="header_content">
         <div class="tool_bar" id="tool_bar">
             <ul>
@@ -38,118 +61,308 @@
                 </li>
                 <li>
                     <i class="fa-solid fa-users"></i>
-                    Пользователи
+                    Врачи
                 </li>
                 <li>
                     <i class="fa-solid fa-book"></i>
-                    Журнал записей
+                    <div style="position: relative;padding-top: 10px;padding-right: 20px;white-space: nowrap">
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" th:text="${recordWeek.size}" >
+                        99+<span class="visually-hidden">unread messages</span>
+                    </span >
+                        Записи на неделю
+                    </div>
                 </li>
                 <li>
                     <i class="fa-solid fa-clock-rotate-left"></i>
                     Ваша история посящений
                 </li>
                 <li>
-                    <i class="fa-solid fa-chart-line"></i>
-                    Статистика
+                    <i class="fa-solid fa-book-medical"></i>
+                    Мед карта
                 </li>
             </ul>
         </div>
-        <div  class="profile_block">
-            <h2>Ваш профиль</h2>
-            <div class="content_profile">
-                <div class="avatar_profile">
-                    <img src="../static/images/avatar.jpg">
-                    <input id="profile_file_avatar" type="file">
-                    <label for="profile_file_avatar">Загрузить фото</label>
-                </div>
-                <div class="description_profile">
-                    <ul>
-                        <li>
-                            <div>
-                                <label>
-                                    Ваше имя
-                                </label>
-                                <input placeholder="Введите новое имя">
-                            </div>
-                            <div>
-                                <label>
-                                    Ваше имя
-                                </label>
-                                <input placeholder="Введите новое имя">
-                            </div>
-                            <div>
-                                <label>
-                                    Ваше имя
-                                </label>
-                                <input placeholder="Введите новое имя">
-                            </div>
-                            <div>
-                                <label>
-                                    Ваше имя
-                                </label>
-                                <input placeholder="Введите новое имя">
-                            </div>
-                        </li>
-                        <li>
-                            <div>
-                                <label>
-                                    Ваше имя
-                                </label>
-                                <input placeholder="Введите новое имя">
-                            </div>
-                            <div>
-                                <label>
-                                    Ваше имя
-                                </label>
-                                <input placeholder="Введите новое имя">
-                            </div>
-                            <div>
-                                <label>
-                                    Ваше имя
-                                </label>
-                                <input placeholder="Введите новое имя">
-                            </div>
-                            <div>
-                                <label>
-                                    Ваше имя
-                                </label>
-                                <input placeholder="Введите новое имя">
-                            </div>
-                        </li>
-                        <li>
-                            <div>
-                                <label>
-                                    Ваше имя
-                                </label>
-                                <input placeholder="Введите новое имя">
-                            </div>
-                            <div>
-                                <label>
-                                    Ваше имя
-                                </label>
-                                <input placeholder="Введите новое имя">
-                            </div>
-                            <div>
-                                <label>
-                                    Ваше имя
-                                </label>
-                                <input placeholder="Введите новое имя">
-                            </div>
-                            <div>
-                                <label>
-                                    Ваше имя
-                                </label>
-                                <input placeholder="Введите новое имя">
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <button class="btn btn-primary" type="submit">Сохранить</button>
-            </div>
-            <div class="schedule_profile">
+        <div class="home_block">
+            <div class="home_block_content">
+                <ul class="list_home_content">
+                    <li  class="item_list">
+                        <h2>Записи пациентов на сегодня</h2>
+                        <ul class="list_patient_records">
+                            <li th:each="recordToDay:${recordToday}">
+                                <div class="home_card">
+                                    <h5 th:text="${recordToDay.doctor.specialization}">Кардиолог</h5>
+                                    <div class="home_card_description">
+                                        <div class="card_home_time">
+                                            <i class="fa-solid fa-clock"></i>
+                                            <small th:text="${recordToDay.time}"></small>
+                                            <span>Сегодня</span>
+                                        </div>
+                                        <div class="person_records">
+                                            Пациент
+                                            <div>
+                                                <img th:src="@{/doctor/{userId}/avatar(userId=${recordToDay.user.id})}">
+                                                <span th:text="${recordToDay.user.name+' '+recordToDay.user.sur_name+' '+recordToDay.user.patronymic}">Радин Никита Сергеевич</span>
+                                            </div>
+                                        </div>
+                                        <div class="rec_but" style="align-items: center">
+                                            <button onclick="cancelRecord(this)" th:data-id="${recordToDay.id}" style="margin-top: 10px" type="button" class="btn btn-danger">Отменить запись</button>
+                                            <a style="max-height: 38px;margin-top:10px"  th:href="@{/visit/record{recordId}(recordId=${recordToDay.id})}" class="btn btn-success">Принять пациента</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="item_list">
+                        <h2>Ваши записи к врачу</h2>
 
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="profile_block">
+            <h2>Ваш профиль</h2>
+            <form method="post" enctype="multipart/form-data" th:action="@{/doctor/{userId}/update(userId=${doctor.id})}">
+                <div class="content_profile">
+                    <i class="fa-solid fa-circle-check sec_alert" th:if="${successUpdatePers}"></i>
+                    <div class="avatar_profile">
+                        <img th:src="@{/doctor/{userId}/avatar(userId=${doctor.id})}">
+                        <input onchange="changePhoto(this)" name="image" id="profile_file_avatar" type="file">
+                        <label for="profile_file_avatar">Загрузить фото</label>
+                    </div>
+                    <div class="description_profile">
+                        <ul>
+                            <li>
+                                <div class="inp_block" th:classappend="${bindingResultUpdate != null and bindingResultUpdate.hasFieldErrors('name') ? 'error' : ''}">
+                                    <label>
+                                        Ваше имя
+                                    </label>
+                                    <i class="fa-regular fa-circle-xmark"></i>
+                                    <input name="name"  th:value="${dtoUpdate == null ? doctor.name : dtoUpdate.name}" placeholder="Введите новое имя">
+                                    <small th:if="${bindingResultUpdate!=null && bindingResultUpdate.getFieldError('name')!=null}" th:text="${bindingResultUpdate.getFieldError('name').getDefaultMessage}"></small>
+                                </div>
+                                <div class="inp_block" th:classappend="${bindingResultUpdate != null and bindingResultUpdate.hasFieldErrors('sur_name') ? 'error' : ''}">
+                                    <label>
+                                        Ваше фамилия
+                                    </label>
+                                    <i class="fa-regular fa-circle-xmark"></i>
+                                    <input name="sur_name" th:value="${dtoUpdate == null ? doctor.sur_name : dtoUpdate.sur_name}" placeholder="Введите новую фамилия">
+                                    <small th:if="${bindingResultUpdate!=null && bindingResultUpdate.getFieldError('sur_name')!=null}" th:text="${bindingResultUpdate.getFieldError('sur_name').getDefaultMessage}"></small>
+                                </div>
+                                <div class="inp_block" th:classappend="${bindingResultUpdate != null and bindingResultUpdate.hasFieldErrors('patronymic') ? 'error' : ''}">
+                                    <label>
+                                        Ваше отчество
+                                    </label>
+                                    <i class="fa-regular fa-circle-xmark"></i>
+                                    <input name="patronymic" th:value="${dtoUpdate == null ? doctor.patronymic : dtoUpdate.patronymic}" placeholder="Введите новое отчество">
+                                    <small th:if="${bindingResultUpdate!=null && bindingResultUpdate.getFieldError('patronymic')!=null}" th:text="${bindingResultUpdate.getFieldError('patronymic').getDefaultMessage}"></small>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="inp_block">
+                                    <label>
+                                        Ваш Email
+                                    </label>
+                                    <input name="email" th:value="${doctor.email}" placeholder="Введите новый email">
+                                </div>
+                                <div class="inp_block" th:classappend="${bindingResultUpdate != null and bindingResultUpdate.hasFieldErrors('password') ? 'error' : ''}">
+                                    <label>
+                                        Ваш пароль
+                                    </label>
+                                    <i class="fa-regular fa-circle-xmark"></i>
+                                    <input  th:value="${dtoUpdate == null ? doctor.password : dtoUpdate.password}" name="password" placeholder="Введите новый пароль">
+                                    <small th:if="${bindingResultUpdate!=null && bindingResultUpdate.getFieldError('password')!=null}" th:text="${bindingResultUpdate.getFieldError('password').getDefaultMessage}"></small>
+                                </div>
+                                <div class="inp_block" th:classappend="${bindingResultUpdate != null and bindingResultUpdate.hasFieldErrors('phone') ? 'error' : ''}">
+                                    <label>
+                                        Ваш номер телефона
+                                    </label>
+                                    <i class="fa-regular fa-circle-xmark"></i>
+                                    <input name="phone" th:value="${dtoUpdate == null ? doctor.phone : dtoUpdate.phone}" placeholder="Введите новый номер телефона">
+                                    <small th:if="${bindingResultUpdate!=null && bindingResultUpdate.getFieldError('phone')!=null}" th:text="${bindingResultUpdate.getFieldError('phone').getDefaultMessage}"></small>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="inp_block">
+                                    <label>
+                                        Ваша спетилизация
+                                    </label>
+                                    <input class="read_only" readonly th:value="${doctor.specialization}" placeholder="Введите новое имя">
+                                </div>
+                                <div class="inp_block">
+                                    <label>
+                                        Ваш опыт работы
+                                    </label>
+                                    <input class="read_only" readonly th:value="${doctor.experience}" placeholder="Введите новое имя">
+                                </div>
+                                <div class="inp_block">
+                                    <label>
+                                        Рейтинг
+                                    </label>
+                                    <input class="read_only" readonly th:value="${doctor.rating}" placeholder="Введите новое имя">
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Сохранить</button>
+                </div>
+            </form>
+        </div>
+        <div class="users_block" id="users_block">
+            <div class="doctor_type_block">
+                <div class="tool_action_users">
+                    <h2>Врачи</h2>
+                    <div style="width: 50%;display: flex;align-items:center">
+                        <input id="searchInput" placeholder="Поиск">
+                    </div>
+                    <select>
+                        <option>Выберите тип врача</option>
+                        <option>Уролог</option>
+                        <option>Выберите тип врача</option>
+                    </select>
+                </div>
+                <ul class="list_doctor" id="list_doctor" style="height: 90%;">
+                    <li th:each="doctors:${listDoctor}" class="card_item">
+                        <div class="card" style="width: 19rem;">
+                            <img  th:src="@{/doctor/{userId}/avatar(userId=${doctors.id})}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 th:text="${doctors.name+' '+doctors.sur_name+' '+doctors.patronymic}" class="card-title centerEl">Card title</h5>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item" th:text="${doctors.statusUser== T(com.example.hospital.model.StatusUser).ACTIVE_STATUS ? 'Активен' : 'Заблокирован'}"
+                                    th:classappend="${doctors.statusUser== T(com.example.hospital.model.StatusUser).ACTIVE_STATUS ? 'active_status':'block_status'}"></li>
+                                <li class="list-group-item centerEl" th:text="${doctors.specialization}"></li>
+                                <li class="list-group-item" ><small th:text="${'Опыт работы более '+ doctors.experience +' лет'}"></small><i class="fa-solid fa-calendar-check"></i></li>
+                                <li class="list-group-item" th:text="'Возраст '"></li>
+                                <li class="list-group-item" style="gap: 10px"><small th:text="'Регйстинг '+${doctors.rating}"></small><i style="color: gold" class="fa-solid fa-star"></i></li>
+
+                            </ul>
+                            <div class="card-body">
+                                <div>
+                                    <a class="btn btn-primary" href="#" th:data-id="${doctors.id}"  th:onclick="'showAddRecordModal(this,'+${doctor.id}+')'" data-bs-toggle="modal" data-widget-name="addRecordModal" data-bs-target="#addRecordModal">Записаться на примем</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="history_records_block">
+            <h2>Ваша история посящений</h2>
+            <div class="table_log_book">
+                <table>
+                    <thead>
+                    <th>№</th>
+                    <th>Пациент</th>
+                    <th>Время записи</th>
+                    <th>Действие</th>
+                    </thead>
+                    <tbody>
+                    <tr th:each="logWeek,iterStat:${recordWeek}">
+                        <td th:text="${iterStat.index + 1}">
+                            1
+                        </td>
+                        <td class="user_description">
+                            <img th:src="@{/doctor/{userId}/avatar(userId=${logWeek.user.id})}">
+                            <span class="user_description" th:text="${logWeek.user.name+' '+logWeek.user.sur_name+' '+logWeek.user.patronymic}"></span>
+                        </td>
+                        <td th:text="${logWeek.dayOfWeek}">
+                            10:10  14.12.2000
+                        </td>
+                        <td>
+                            <button onclick="cancelRecord(this)" th:data-id="${logWeek.id}"  style="margin-top: 10px" type="button" class="btn btn-danger">Отменить запись</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="med_card_block">
+            <div>
+                <h2>Ваша мед карта</h2>
+                <ul class="list_visit">
+                    <li class="visit_item" th:each="medCard:${medicalCard}">
+                        <ul>
+                            <h3 th:text="${medCard.doctor.specialization}">
+                                Офтальмолог
+                            </h3>
+                            <li>
+                                Жалобы :
+                                <span th:text="${medCard.description}">
+                                        За последние две недели я заметил возросшую утомляемость, снижение аппетита и непостоянное настроение. Также испытываю проблемы со сном, часто просыпаюсь ночью и снова заснуть.
+Диагноз врача: Депрессивное расстройство.
+                                    </span>
+                            </li>
+                            <li>
+                                Диагноз :
+                                <span th:text="${medCard.diagnosis}">
+                                    Депрессивное расстройство
+                                </span>
+                            </li>
+                            <li>
+                                Лечение :
+                                <span th:text="${medCard.appointments}">
+                                    рекомендуется пройти курс антидепрессантов, начиная с небольших начальных доз, которые постепенно будут увеличиваться. Помимо этого, рекомендуется регулярное использование Алиэкспресс психотерапии для проведения психотерапии, в том числе когнитивно-поведенческой терапии. Пациент также советует вести здоровый образ жизни, включая регулярные физические упражнения и правильное питание. Важно выбирать время для отдыха и ухода за собой. Следует уделять внимание во сне, практиковать перед сном релаксационные техники, чтобы улучшить его качество. Таким образом, в соответствии с указанными рекомендациями, требуется регулярный прием врача-терапевта для контроля эффективности лечения и корректировки его дозировки при необходимости.
+                                </span>
+                            </li>
+                            <li class="dotcor_item">
+                                <div>
+                                    Дата приема :
+                                    <span th:text="${medCard.date_visitation}"> 14.12.2000 12:10</span>
+                                </div>
+                                <div>
+                                    Врач :
+                                    <span>
+                                        <img th:src="@{/admin/{userId}/avatar(userId=${medCard.patient.id})}">
+                                        <label th:text="${medCard.doctor.name}+' '+${medCard.doctor.sur_name}+' '+${medCard.doctor.patronymic}">Радин Никита Сергеевич</label>
+                                    </span>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
             </div>
         </div>
     </div>
+    <div class="modal fade" data-bs-backdrop="static" id="addRecordModal"  aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleaddRecordModal" style="text-align: center">Окно записи к врачу</h1>
+                    <button type="button" class="btn-close"  aria-label="Close" onclick="closeModal('addRecordModal')"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="custom-blocks-day"  class="custom-blocks-day">
+                        <div class="custom-block" data-widget-name="1">Пн</div>
+                        <div class="custom-block" data-widget-name="2">Вт</div>
+                        <div  class="custom-block" data-widget-name="3">Ср</div>
+                        <div class="custom-block" data-widget-name="4">Чт</div>
+                        <div class="custom-block" data-widget-name="5">Пт</div>
+                        <div class="custom-block weekend" data-widget-name="6">Сб</div>
+                        <div class="custom-block weekend" data-widget-name="7">Вс</div>
+                    </div>
+                    <div class="time_block" id="time_block">
+                        <h3>Выберите время</h3>
+                        <div class="schedule" id="schedule">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style="justify-content: center;justify-items: center">
+                    <button  disabled style="width: 50%" id="register_button_record" type="button" class="btn btn-primary">Зарегестрироваться</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="../static/doctor/header/script.js" defer></script>
+    <script src="../static/doctor/users_page/script.js" defer></script>
+    <script src="/doctor/users_page/script.js" defer></script>
+    <script src="/doctor/header/script.js" defer></script>script
+    <script src="/doctor/users_page/search.js" defer></script>
 </body>
 </html>

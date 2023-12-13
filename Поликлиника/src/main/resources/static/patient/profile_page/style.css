@@ -1,0 +1,115 @@
+.profile_block{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    flex-flow: column;
+    gap: 20px;
+}
+
+.profile_block h2{
+    color: #52627d;
+}
+
+.content_profile{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    flex-flow: column;
+    gap: 30px;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 5px 2px rgba(133, 133, 133, 0.3);
+}
+
+.content_profile input{
+    width: 300px;
+    border: 2px solid #6a5ac3;
+    padding: 5px;
+}
+
+.content_profile .sec_alert{
+    position: absolute;
+    right: -20px;
+    font-size: 50px;
+    top: -25px;
+    color: #6ec073;
+    border-radius: 100%;
+    background-color: white;
+}
+
+.content_profile .inp_block i{
+    top: 65%;
+    transform: translateY(-50%);
+}
+
+.content_profile .inp_block{
+    position: relative;
+}
+
+.content_profile .read_only{
+    cursor: default;
+    border: none;
+    border-bottom: 2px solid #6a5ac3;
+    outline: none;
+}
+
+.avatar_profile{
+    display: flex;
+    flex-flow: column;
+    gap: 20px;
+    justify-items: center;
+    justify-content: center;
+}
+
+.avatar_profile input{
+    opacity: 0;
+    background-color: transparent;
+    position: absolute;
+}
+
+.avatar_profile label{
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+}
+
+.avatar_profile img{
+    object-fit: cover;
+    height: 200px;
+    width: 200px;
+    border-radius: 10%;
+    border: 2px solid #50607c;
+}
+
+.description_profile{
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    width: 50%;
+}
+
+.description_profile ul{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+    gap: 50px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.description_profile ul li div{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    flex-flow: column;
+    align-items: start;
+}

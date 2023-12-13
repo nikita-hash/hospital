@@ -1,5 +1,6 @@
 package com.example.hospital.mapper;
 
+import com.example.hospital.dto.DoctorRecordsListDto;
 import com.example.hospital.dto.DoctorRegistrationDto;
 import com.example.hospital.dto.UserChangeDto;
 import com.example.hospital.model.Doctor;
@@ -7,6 +8,8 @@ import com.example.hospital.model.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
+
+import java.util.List;
 
 @Mapper
 public interface DoctortMapper {
@@ -23,4 +26,6 @@ public interface DoctortMapper {
     @Mapping(target = "id",source = "id")
     @Mapping(target = "image",ignore = true)
     Doctor doctorRegistrationDtoToDoctor(DoctorRegistrationDto doctorRegistrationDto);
+
+
 }

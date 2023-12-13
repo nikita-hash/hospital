@@ -12,11 +12,12 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.Cascade;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @NoArgsConstructor
-@AllArgsConstructor
 @SuperBuilder
 @Entity
 @Setter
@@ -37,9 +38,11 @@ public class User implements BasicEntity<Long> {
     private String password;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "role")
     Role role;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "status_user")
     StatusUser statusUser;
 
     @NotNull(message = "Заполните поле !")
@@ -78,7 +81,11 @@ public class User implements BasicEntity<Long> {
         this.id=id;
     }
 
-    /*@OneToOne(mappedBy = "patient")
-    MedicalCard medicalCard;*/
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "user")
+    List<Record> records;
+
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
+    private List<MedicalCard> medicalCards;
 
 }
