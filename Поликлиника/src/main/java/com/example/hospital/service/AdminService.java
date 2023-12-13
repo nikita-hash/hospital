@@ -1,8 +1,12 @@
 package com.example.hospital.service;
 
+import com.example.hospital.dto.AdminRegistrationDto;
+import com.example.hospital.mapper.AdminMapper;
+import com.example.hospital.mapper.DoctortMapper;
 import com.example.hospital.model.*;
 import com.example.hospital.repository.AdminRepository;
 import com.example.hospital.repository.UserRepository;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -41,12 +45,19 @@ public class AdminService {
     }
 
     @Transactional
-    public void saveAdmin(Admin admin){
+    @SneakyThrows
+    public void saveAdmin(AdminRegistrationDto adminDto){
+        Admin admin= AdminMapper.INSTANCE.adminRegistrationDtoToAdmin(adminDto);
         admin.setStatusUser(StatusUser.ACTIVE_STATUS);
         admin.setRole(Role.ADMIN);
-        admin.setImage(avatar);
-        admin.setDate_ragistration(LocalDateTime.now());
         admin.setPassword(passwordGenerator.generateRandomPassword());
+        if(!adminDto.getImage().isEmpty()){
+            admin.setImage(adminDto.getImage().getOriginalFilename());
+            imageServiece.uploadImage(adminDto.getImage().getOriginalFilename(),adminDto.getImage().getInputStream());
+        }
+        else {
+            admin.setImage(avatar);
+        }
         adminRepository.save(admin);
     }
 

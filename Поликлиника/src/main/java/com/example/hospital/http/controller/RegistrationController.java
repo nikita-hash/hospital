@@ -1,5 +1,9 @@
 package com.example.hospital.http.controller;
 
+import com.example.hospital.dto.AdminRegistrationDto;
+import com.example.hospital.dto.DoctorRegistrationDto;
+import com.example.hospital.mapper.AdminMapper;
+import com.example.hospital.mapper.DoctortMapper;
 import com.example.hospital.model.*;
 import com.example.hospital.service.AdminService;
 import com.example.hospital.service.DoctorService;
@@ -41,17 +45,45 @@ public class RegistrationController {
     }
 
     @SneakyThrows
-    @PostMapping("/admin")
-    private String registrationAdmin(@ModelAttribute @Valid Admin admin,
+    @PostMapping("/admin/{id}")
+    private String registrationAdmin(@Valid AdminRegistrationDto admin,
                                      BindingResult bindingResult,
-                                     RedirectAttributes redirectAttributes){
+                                     RedirectAttributes redirectAttributes,
+                                     @PathVariable(name = "id")Long idAdmin){
         if(bindingResult.hasErrors()){
-
+                redirectAttributes.addFlashAttribute("adminReg", admin);
+            redirectAttributes.addFlashAttribute("bindingResultAdmin", bindingResult);
         }
         else {
+            redirectAttributes.addFlashAttribute("successAdminReg", true);
+            mailService.sendMessageNewUsers(admin.getEmail(),
+                    AdminMapper.INSTANCE.adminRegistrationDtoToAdmin(admin));
+            adminService.saveAdmin(admin);
 
         }
-        return "";
+        return "redirect:/admin/"+idAdmin;
+    }
+
+    @SneakyThrows
+    @PostMapping("/doctor/{id}")
+    private String registrationDoctor(@ModelAttribute @Valid DoctorRegistrationDto doctor,
+                                      BindingResult bindingResult,
+                                      RedirectAttributes redirectAttributes,
+                                      @PathVariable(name = "id")Long idAdmin) {
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("doctor", doctor);
+            redirectAttributes.addFlashAttribute("bindingResultDoctor", bindingResult);
+            return "redirect:/admin/"+idAdmin;
+        } else {
+            doctorService.saveDoctor(doctor);
+            if (mailService.sendMessageNewUsers(doctor.getEmail(), DoctortMapper.INSTANCE.doctorRegistrationDtoToDoctor(doctor)).get()) {
+                System.out.println("Прошле этап !");
+                redirectAttributes.addFlashAttribute("successDocReg", true);
+            } else {
+                redirectAttributes.addFlashAttribute("error_internet");
+            }
+            return "redirect:/admin/"+idAdmin;
+        }
     }
 
     @SneakyThrows
@@ -65,8 +97,8 @@ public class RegistrationController {
             return "redirect:/registration";
         }
         else {
-            if(mailService.sendMessageNewUsers(patient.getEmail(),patient)){
-                patienService.savePatient(patient);
+            patienService.savePatient(patient);
+            if(mailService.sendMessageNewUsers(patient.getEmail(),patient).get()){
                 redirectAttributes.addFlashAttribute("success",true);
             }
             else {

@@ -2,14 +2,35 @@ var tool_bar_user=document.getElementById('tool_users_type_button');
 var users_block=document.getElementById('users_block');
 var modalDelUser=new bootstrap.Modal(document.getElementById('deleteUserModalLabel'));
 var modalAddDoctor=new bootstrap.Modal(document.getElementById("addDoctorModal"));
-var mapModal= new Map;
-mapModal.set("addDoctorModal",modalAddDoctor)
-    .set("deleteUserModalLabel",modalDelUser);
-
+var modalAddAdmin=new bootstrap.Modal(document.getElementById('addAdminModal'));
+var mapModal= new Map();
+var mapRegModal=new Map();
 var map=new Map();
-map.set(1,users_block.children[1])
-    .set(2,users_block.children[2])
-    .set(3,users_block.children[3]);
+
+function initMap(){
+    map.set(1,users_block.children[1])
+        .set(2,users_block.children[2])
+        .set(3,users_block.children[3]);
+
+    mapModal.set("addDoctorModal",modalAddDoctor)
+        .set("deleteUserModalLabel",modalDelUser)
+        .set("addAdminModal",modalAddAdmin);
+
+
+    mapRegModal.set("addDoctorModal",modalAddDoctor)
+        .set("addAdminModal",modalAddAdmin);
+}
+
+function closeSecStatus(){
+    var mas=document.querySelector(".sec_alert");
+    for(i=0;i<mas.length;i++){
+        mas[i].remove();
+    }
+}
+
+initMap();
+
+
 
 function openToolUserMenu(id,map1){
     map1.forEach(el => {
@@ -20,6 +41,7 @@ function openToolUserMenu(id,map1){
 
 window.addEventListener('load', function() {
     var savedState = Number(sessionStorage.getItem('tool_users_state'));
+    sessionStorage.getItem("modal")!=null ? mapRegModal.get(sessionStorage.getItem("modal")).show():'';
     if(savedState!=null){
         tool_bar_user.children[savedState].className="open";
         openToolUserMenu(savedState+1,map);
@@ -29,6 +51,10 @@ window.addEventListener('load', function() {
         openToolUserMenu(1,map);
     }
 });
+
+function openModal(item){
+    sessionStorage.setItem("modal",item.getAttribute('data-widget-name'));
+}
 
 tool_bar_user.onclick=function (e){
         var but = e.target.closest("BUTTON");
@@ -45,7 +71,6 @@ tool_bar_user.onclick=function (e){
 const filterButton = document.getElementById('filter_patient');
 const filterContainer = document.getElementById('filterContainer');
 
-console.log(filterButton)
 
 filterButton.addEventListener('click', () => {
     filterContainer.classList.toggle('show');
@@ -69,14 +94,12 @@ function showConfirmationModal(element) {
 }
 
 function closeModal(name){
-    console.log(name);
-    console.log(mapModal.get(name));
     mapModal.get(name).hide();
+    sessionStorage.removeItem("modal");
 }
 
 function deleteUser(userId) {
-    console.log(userId);
-    closeModal();
+    closeModal("deleteUserModalLabel");
 
     $.ajax({
         url: "/admin/delete",
@@ -85,7 +108,6 @@ function deleteUser(userId) {
             id_patient: userId,
         },
         success: function(response) {
-            console.log(response);
             location.reload();
         },
         error: function(error) {

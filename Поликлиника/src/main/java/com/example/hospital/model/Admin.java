@@ -3,15 +3,15 @@ package com.example.hospital.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
 import java.util.Date;
 
-@Data
+@SuperBuilder
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @ToString

@@ -40,8 +40,17 @@
     box-shadow: 0 0 5px 1px rgba(133, 133, 133, 0.3);
 }
 
+.card .centerEl {
+    text-align: center;
+}
 
-.doctor_type_block ul{
+.card .list-group-item{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.doctor_type_block .list_doctor{
     max-width: 100%;
     margin: 0;
     padding: 0;
@@ -275,6 +284,15 @@
 .users_block .registration_content input{
     padding-top: 2px;
     padding-bottom: 2px;
+    padding-left: 5px;
+}
+
+.inp_block{
+    margin-bottom: 10px
+}
+
+.inp_block select{
+    width: 59%;
 }
 
 .sec_alert{

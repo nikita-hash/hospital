@@ -46,7 +46,7 @@ public class AdminController {
 
     @GetMapping("/{id}")
     private String adminMenu(@PathVariable(name = "id")Long id, Model model){
-
+        model.addAttribute("listDoctor",doctorService.findAll());
         model.addAttribute("statisticsService",statisticsService);
         model.addAttribute("all_users", userService.findAll().size());
         model.addAttribute("listAdmin",adminService.findAll());

@@ -94,7 +94,7 @@ window.addEventListener('load', function() {
 });
 
 tool_bar.onclick=function (e){
-    if(e.target.tagName=="LI" || e.target.tagName=="I" || e.target.tagName=="FONT"){
+    if(e.target.tagName=="LI" || e.target.tagName=="I" || e.target.tagName=="FONT" || e.target.tagName=="DIV"){
         var el=e.target.closest("LI");
         tool_bar.getElementsByClassName("open_tool_item")[0].className="";
         var index = Array.prototype.indexOf.call(tool_bar.getElementsByTagName("UL")[0].children, el);
@@ -103,5 +103,6 @@ tool_bar.onclick=function (e){
         openToolUserMenu(index+1,map_tool_block);
     }
 }
+
 
 createChart();

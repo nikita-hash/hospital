@@ -48,7 +48,7 @@
                 </li>
             </ul>
     </nav>
-    <div class="header_content" id="header_content">
+    <div class="header_content" id="header_content" >
         <div class="tool_bar" id="tool_bar">
             <ul>
                 <li >
@@ -65,7 +65,12 @@
                 </li>
                 <li>
                     <i class="fa-solid fa-book"></i>
-                    Журнал записей
+                    <div style="position: relative;padding-top: 10px;padding-right: 20px">
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" >
+                        99+<span class="visually-hidden">unread messages</span>
+                    </span>
+                        Журнал записей
+                    </div>
                 </li>
                 <li>
                     <i class="fa-solid fa-clock-rotate-left"></i>
@@ -556,7 +561,7 @@
                                 </div>
                             </li>
                             <li>
-                                <div>
+                                <div class="inp_block">
                                     <label>
                                         Ваш Email
                                     </label>
@@ -570,7 +575,7 @@
                                     <input  th:value="${dtoUpdate == null ? admin.password : dtoUpdate.password}" name="password" placeholder="Введите новый пароль">
                                     <small th:if="${bindingResultUpdate!=null && bindingResultUpdate.getFieldError('password')!=null}" th:text="${bindingResultUpdate.getFieldError('password').getDefaultMessage}"></small>
                                 </div>
-                                <div>
+                                <div class="inp_block">
                                     <label>
                                         Дата вашкй регистрации
                                     </label>
@@ -580,7 +585,7 @@
                                 +':'
                                 +admin.date_ragistration.getMinute()}" placeholder="Введите новое имя">
                                 </div>
-                                <div>
+                                <div class="inp_block">
                                     <label>
                                         Статус
                                     </label>
@@ -659,7 +664,7 @@
             <div class="doctor_type_block">
                 <div class="tool_action_users">
                     <h2>Врачи</h2>
-                    <button style="background-color: #6a5ac3; color: white" data-bs-target="#addDoctorModal" data-bs-toggle="modal">Добавить врача</button>
+                    <button style="background-color: #6a5ac3; color: white" data-bs-target="#addDoctorModal" data-widget-name="addDoctorModal" onclick="openModal(this)" data-bs-toggle="modal">Добавить врача</button>
                     <div style="width: 50%;display: flex;align-items:center">
                         <input  placeholder="Поиск">
                     </div>
@@ -669,22 +674,23 @@
                         <option>Выберите тип врача</option>
                     </select>
                 </div>
-                <ul>
-                    <li>
+                <ul class="list_doctor">
+                    <li th:each="doctors:${listDoctor}">
                         <div class="card" style="width: 18rem;">
-                            <img src="../static/images/doctor.jpg" class="card-img-top" alt="...">
+                            <img th:src="@{/admin/{userId}/avatar(userId=${doctors.id})}" class="card-img-top" alt="...">
                             <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <h5 th:text="${doctors.name+' '+doctors.sur_name+' '+doctors.patronymic}" class="card-title centerEl">Card title</h5>
                             </div>
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item">An item</li>
-                                <li class="list-group-item">A second item</li>
+                                <li class="list-group-item centerEl" th:text="${doctors.specialization}"></li>
+                                <li class="list-group-item" ><small th:text="${'Опыт работы  '+ doctors.experience}"></small><i class="fa-solid fa-calendar-check"></i></li>
+                                <li class="list-group-item" th:text="'Возраст '"></li>
+                                <li class="list-group-item">A third item</li>
                                 <li class="list-group-item">A third item</li>
                             </ul>
                             <div class="card-body">
-                                <a href="#" class="card-link">Card link</a>
-                                <a href="#" class="card-link">Another link</a>
+                                <a class="btn btn-primary" href="#" >Записаться на прием</a>
+                                <a onclick="showConfirmationModal(this)"  th:data-id="${doctors.id}" href="#" class="card-link">Удалить врача</a>
                             </div>
                         </div>
                     </li>
@@ -765,7 +771,7 @@
             <div class="patient_type_block">
                 <div class="tool_action_users">
                     <h2>Администраторы</h2>
-                    <button style="background-color: #6a5ac3; color: white">Добавить админа</button>
+                    <button data-bs-toggle="modal" data-bs-target="#addAdminModal" data-widget-name="addAdminModal" style="background-color: #6a5ac3; color: white" onclick="openModal(this)">Добавить админа</button>
                     <button>Импортировать админов XML</button>
                     <button class="filter_patient"><i class="fa-solid fa-chevron-left"></i> Фильтр</button>
                 </div>
@@ -788,11 +794,11 @@
                                 <div class="table_but_tool">
                                     <i class="fa-regular fa-pen-to-square"></i>
                                     <i class="fa-solid fa-chart-simple"></i>
-                                    <i class="fa-solid fa-trash"></i>
+                                    <i onclick="showConfirmationModal(this)"  th:data-id="${admins.id}" class="fa-solid fa-trash"></i>
                                 </div>
                             </td>
                             <td>
-                                <button type="button" class="btn btn-outline-success">Разблокировать</button>
+                                <button  type="button" class="btn btn-outline-success">Разблокировать</button>
                             </td>
                         </tr>
                     </table>
@@ -1130,9 +1136,9 @@
                     <div class="today_workload">
                         <div class="container_progress">
                             <div class="progress_cust" style="--i:85;--clr:#43f94a;">
-                                <h3>85<span>%</span></h3>
-                                <h4>html</h4>
+                                <h3 th:text="${statisticsService.getTotalAdmin()}">85<span>%</span></h3>
                             </div>
+                            <h5>Администраторы</h5>
                         </div>
                         <div class="container_progress">
                             <div class="progress_cust less" style="--i:35;--clr:#2ccde9;">
@@ -1163,73 +1169,164 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="addDoctorModal"  aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+    <div class="modal fade" data-bs-backdrop="static" id="addDoctorModal"  aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
+            <form id="form_registration" th:method="post" th:action="@{/registration/doctor/{id}(id=${admin.id})}" th:object="${doctor}" enctype="multipart/form-data">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Регистрация врачей</h1>
                     <button type="button" class="btn-close"  aria-label="Close" onclick="closeModal('addDoctorModal')"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="form_registration" th:method="post">
-                        <div class="registration_content">
-                            <i class="fa-solid fa-circle-check sec_alert" ></i>
+                        <div class="registration_content" style="gap: 20px">
+                            <i class="fa-solid fa-circle-check sec_alert" th:if="${successDocReg}" data-widget-name="check_alert"></i>
                             <div class="avatar_profile" style="align-items: center">
-                                <img>
-                                <input  type="file">
-                                <label for="profile_file_avatar">Загрузить фото</label>
+                                <img th:src="@{/images/avatar.jpg}">
+                                <input id="doctor_file_avatar" onchange="changePhoto(this)" name="image" type="file">
+                                <label for="doctor_file_avatar">Загрузить фото</label>
                             </div>
-                            <div class="inp_block">
+                            <div  class="inp_block" th:classappend="${bindingResultDoctor != null and bindingResultDoctor.hasFieldErrors('name') ? 'error' : ''}">
                                 <label >Введите имя</label>
                                 <i class="fa-regular fa-circle-xmark"></i>
-                                <input  name="name">
-                                <small ></small>
+                                <input name="name" th:value="${doctor}!=null?${doctor.name}:''">
+                                <small th:if="${bindingResultDoctor!=null && bindingResultDoctor.getFieldError('name')!=null}" th:text="${bindingResultDoctor.getFieldError('name').getDefaultMessage}" ></small>
                             </div>
-                            <div class="inp_block">
+                            <div class="inp_block" th:classappend="${bindingResultDoctor != null and bindingResultDoctor.hasFieldErrors('sur_name') ? 'error' : ''}">
                                 <label >Введите фамилию</label>
                                 <i class="fa-regular fa-circle-xmark"></i>
-                                <input  name="name">
-                                <small ></small>
+                                <input  name="sur_name" th:value="${doctor}!=null?${doctor.sur_name}:''">
+                                <small th:if="${bindingResultDoctor!=null && bindingResultDoctor.getFieldError('sur_name')!=null}" th:text="${bindingResultDoctor.getFieldError('sur_name').getDefaultMessage}"></small>
                             </div>
-                            <div class="inp_block">
+                            <div class="inp_block"  th:classappend="${bindingResultDoctor != null and bindingResultDoctor.hasFieldErrors('patronymic') ? 'error' : ''}">
                                 <label >Введите отчество</label>
                                 <i class="fa-regular fa-circle-xmark"></i>
-                                <input  name="name">
-                                <small ></small>
+                                <input  name="patronymic" th:value="${doctor}!=null?${doctor.patronymic}:''">
+                                <small th:if="${bindingResultDoctor!=null && bindingResultDoctor.getFieldError('patronymic')!=null}" th:text="${bindingResultDoctor.getFieldError('patronymic').getDefaultMessage}"></small>
                             </div>
-                            <div class="inp_block">
+                            <div class="inp_block"  th:classappend="${bindingResultDoctor != null and bindingResultDoctor.hasFieldErrors('phone') ? 'error' : ''}">
                                 <label >Введите номер телефона</label>
                                 <i class="fa-regular fa-circle-xmark"></i>
-                                <input  name="name">
-                                <small ></small>
+                                <input  name="phone" th:value="${doctor}!=null?${doctor.phone}:''">
+                                <small th:if="${bindingResultDoctor!=null && bindingResultDoctor.getFieldError('phone')!=null}" th:text="${bindingResultDoctor.getFieldError('phone').getDefaultMessage}"></small>
                             </div>
-                            <div class="inp_block">
+                            <div class="inp_block" th:classappend="${bindingResultDoctor != null and bindingResultDoctor.hasFieldErrors('date_birth') ? 'error' : ''}">
+                                <label>Укажите дату рождения</label>
+                                <i class="fa-regular fa-circle-xmark"></i>
+                                <input th:value="${doctor}!=null?${doctor.date_birth}:''" type="date" name="date_birth">
+                                <small th:if="${bindingResultDoctor!=null && bindingResultDoctor.getFieldError('date_birth')!=null}" th:text="${bindingResultDoctor.getFieldError('date_birth').getDefaultMessage}"></small>
+                            </div>
+                            <div  th:classappend="${bindingResultDoctor != null and bindingResultDoctor.hasFieldErrors('email') ? 'error' : ''}" class="inp_block">
                                 <label >Введите email</label>
                                 <i class="fa-regular fa-circle-xmark"></i>
-                                <input  name="name">
-                                <small ></small>
+                                <input th:value="${doctor}!=null?${doctor.email}:''" name="email">
+                                <small th:if="${bindingResultDoctor!=null && bindingResultDoctor.getFieldError('email')!=null}" th:text="${bindingResultDoctor.getFieldError('email').getDefaultMessage}"></small>
                             </div>
                             <div class="inp_block">
                                 <label >Выберите специальность </label>
-                                <select>
-                                    <option>
+                                <select  name="specialization">
+                                    <option selected th:selected="${doctor!=null ?doctor.specialization eq 'Терапевт':'true'}">
                                         Терапевт
+                                    </option>
+                                    <option th:selected="${doctor!=null ? doctor.specialization eq 'Травматолог':''}">
+                                        Травматолог
+                                    </option>
+                                    <option th:selected="${doctor!=null ? doctor.specialization eq 'Хирург':''}">
+                                        Хирург
+                                    </option>
+                                    <option th:selected="${doctor!=null ? doctor.specialization eq 'Уролог':''}">
+                                        Уролог
+                                    </option>
+                                    <option th:selected="${doctor!=null ? doctor.specialization eq 'Стоматолог':''}">
+                                        Стоматолог
+                                    </option>
+                                    <option th:selected="${ doctor!=null ? doctor.specialization eq 'Лор':''}">
+                                        Лор
+                                    </option>
+                                    <option th:selected="${doctor!=null ? doctor.specialization eq 'Проктолог':''}">
+                                        Проктолог
+                                    </option>
+                                    <option th:selected="${doctor!=null ? doctor.specialization eq 'Невролог':''}">
+                                        Невролог
+                                    </option>
+                                    <option th:selected="${doctor!=null ? doctor.specialization eq 'Офтальмолог':''}">
+                                        Офтальмолог
                                     </option>
                                 </select>
                             </div>
                             <div class="inp_block">
-                                <label >Введите email</label>
+                                <label >Введите ваш опыт работы</label>
                                 <i class="fa-regular fa-circle-xmark"></i>
-                                <input type="number" max="100" min="1"  name="name">
-                                <small ></small>
+                                <input th:value="${doctor}!=null?${doctor.experience}:'1'" onkeydown="return false" type="number" max="100" min="1" value="1"  name="experience">
+                                <small></small>
                             </div>
                         </div>
-                    </form>
                 </div>
                 <div class="modal-footer">
                     <button style="width: 100%" type="submit" class="btn btn-primary">Зарегестрироваться</button>
                 </div>
             </div>
+            </form>
+        </div>
+    </div>
+    <div class="modal fade" data-bs-backdrop="static" id="addAdminModal"  aria-hidden="true" aria-labelledby="exampleaddAdminModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <form id="form_admin_registration" th:method="post" th:action="@{/registration/admin/{id}(id=${admin.id})}" th:object="${adminReg}" enctype="multipart/form-data">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleaddAdminModal">Регистрация врачей</h1>
+                        <button type="button" class="btn-close"  aria-label="Close" onclick="closeModal('addAdminModal')"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="registration_content" style="gap: 20px">
+                            <i class="fa-solid fa-circle-check sec_alert" th:if="${successAdminReg}" data-widget-name="check_alert"></i>
+                            <div class="avatar_profile" style="align-items: center">
+                                <img th:src="@{/images/avatar.jpg}">
+                                <input id="admin_file_avatar" onchange="changePhoto(this)" name="image" type="file">
+                                <label for="admin_file_avatar">Загрузить фото</label>
+                            </div>
+                            <div  class="inp_block" th:classappend="${bindingResultAdmin != null and bindingResultAdmin.hasFieldErrors('name') ? 'error' : ''}">
+                                <label >Введите имя</label>
+                                <i class="fa-regular fa-circle-xmark"></i>
+                                <input name="name" th:value="${adminReg}!=null?${adminReg.name}:''">
+                                <small th:if="${bindingResultAdmin!=null && bindingResultAdmin.getFieldError('name')!=null}" th:text="${bindingResultAdmin.getFieldError('name').getDefaultMessage}" ></small>
+                            </div>
+                            <div class="inp_block" th:classappend="${bindingResultAdmin != null and bindingResultAdmin.hasFieldErrors('sur_name') ? 'error' : ''}">
+                                <label >Введите фамилию</label>
+                                <i class="fa-regular fa-circle-xmark"></i>
+                                <input  name="sur_name" th:value="${adminReg}!=null?${adminReg.sur_name}:''">
+                                <small th:if="${bindingResultAdmin!=null && bindingResultAdmin.getFieldError('sur_name')!=null}" th:text="${bindingResultAdmin.getFieldError('sur_name').getDefaultMessage}"></small>
+                            </div>
+                            <div class="inp_block"  th:classappend="${bindingResultAdmin != null and bindingResultAdmin.hasFieldErrors('patronymic') ? 'error' : ''}">
+                                <label >Введите отчество</label>
+                                <i class="fa-regular fa-circle-xmark"></i>
+                                <input  name="patronymic" th:value="${adminReg}!=null?${adminReg.patronymic}:''">
+                                <small th:if="${bindingResultAdmin!=null && bindingResultAdmin.getFieldError('patronymic')!=null}" th:text="${bindingResultAdmin.getFieldError('patronymic').getDefaultMessage}"></small>
+                            </div>
+                            <div class="inp_block"  th:classappend="${bindingResultAdmin != null and bindingResultAdmin.hasFieldErrors('phone') ? 'error' : ''}">
+                                <label >Введите номер телефона</label>
+                                <i class="fa-regular fa-circle-xmark"></i>
+                                <input  name="phone" th:value="${adminReg}!=null?${adminReg.phone}:''">
+                                <small th:if="${bindingResultAdmin!=null && bindingResultAdmin.getFieldError('phone')!=null}" th:text="${bindingResultAdmin.getFieldError('phone').getDefaultMessage}"></small>
+                            </div>
+                            <div class="inp_block" th:classappend="${bindingResultAdmin != null and bindingResultAdmin.hasFieldErrors('date_birth') ? 'error' : ''}">
+                                <label>Укажите дату рождения</label>
+                                <i class="fa-regular fa-circle-xmark"></i>
+                                <input th:value="${adminReg}!=null?${adminReg.date_birth}:''" type="date" name="date_birth">
+                                <small th:if="${bindingResultAdmin!=null && bindingResultAdmin.getFieldError('date_birth')!=null}" th:text="${bindingResultAdmin.getFieldError('date_birth').getDefaultMessage}"></small>
+                            </div>
+                            <div  th:classappend="${bindingResultAdmin != null and bindingResultAdmin.hasFieldErrors('email') ? 'error' : ''}" class="inp_block">
+                                <label >Введите email</label>
+                                <i class="fa-regular fa-circle-xmark"></i>
+                                <input th:value="${adminReg}!=null?${adminReg.email}:''" name="email">
+                                <small th:if="${bindingResultAdmin!=null && bindingResultAdmin.getFieldError('email')!=null}" th:text="${bindingResultAdmin.getFieldError('email').getDefaultMessage}"></small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button style="width: 100%" type="submit" class="btn btn-primary">Зарегестрироваться</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
     <div class="modal fade" id="deleteUserModalLabel"  aria-hidden="true" aria-labelledby="exampledeleteUserModalLabel" tabindex="-1">
@@ -1249,6 +1346,7 @@
             </div>
         </div>
     </div>
+
 </body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>

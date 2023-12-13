@@ -78,7 +78,6 @@ nav li i{
     max-width: 13%;
     height: 100%;
     padding-top: 5%;
-    overflow: hidden;
 }
 
 .tool_bar ul{
@@ -88,6 +87,7 @@ nav li i{
 }
 
 .tool_bar li{
+    position: relative;
     text-align: left;
     padding: 20px;
     width: 100%;
